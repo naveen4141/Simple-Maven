@@ -10,7 +10,6 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-    }
         stage('Test') {
             agent {
                 label 'Grd-Mvn'
@@ -32,9 +31,8 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-    
+    }
 }
-
 
 
 
