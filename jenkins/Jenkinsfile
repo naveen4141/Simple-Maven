@@ -2,17 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Git-Checkout') {
-            agent {
-                label 'Grd-Mvn'
-            }
-            steps {
-                checkout changelog: false, poll: false, scm: [$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/naveen4141/Simple-Maven.git']]]
-						
-            }
-        }
-    }
-    stages {
         stage('Build') {
 		    agent {
                 label 'Grd-Mvn'
@@ -21,6 +10,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+    }
         stage('Test') {
             agent {
                 label 'Grd-Mvn'
